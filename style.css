@@ -1,172 +1,252 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BASE */
+/* ================= VARIÁVEIS ================= */
+:root {
+    --bg-main: #0d0b1f;
+    --bg-card: #1a1535;
+    --primary: #00ffcc;
+    --secondary: #b58cff;
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+}
+
+/* ================= CORPO ================= */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #0d0b1f;
-    color: #ffffff;
+    background-color: var(--bg-main);
+    color: var(--text-light);
     line-height: 1.6;
 }
 
-/* HERO */
-.hero {
+/* ================= LINKS ================= */
+a {
+    text-decoration: none;
+}
+
+/* ================= HEADER / HERO ================= */
+header {
     min-height: 100vh;
-    background: linear-gradient(rgba(13,11,31,.85), rgba(13,11,31,.85)),
-                url("img/banner.jpg") center/cover;
+    background:
+        linear-gradient(rgba(13, 11, 31, 0.85), rgba(13, 11, 31, 0.85)),
+        url("img/banner.jpg");
+    background-size: cover;
+    background-position: center;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 40px;
 }
 
+/* LOGO */
 .logo {
     width: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.hero h1 {
+/* TITULOS */
+header h1 {
     font-size: 3rem;
+    margin-bottom: 12px;
 }
 
-.hero p {
-    margin: 15px 0 30px;
-    max-width: 500px;
+header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: var(--text-muted);
 }
 
-.btn {
-    background: #00ffcc;
+/* BOTÃO PRINCIPAL */
+header a {
+    display: inline-block;
+    background: var(--primary);
     color: #000;
-    padding: 15px 35px;
+    padding: 15px 40px;
     border-radius: 30px;
     font-weight: bold;
-    transition: .3s;
+    transition: 0.3s ease;
 }
 
-.btn:hover {
-    background: #fff;
-    transform: scale(1.05);
+header a:hover {
+    background: #ffffff;
+    transform: scale(1.06);
 }
 
-/* SEÇÕES */
+/* ================= SEÇÕES ================= */
 section {
     padding: 80px 20px;
     max-width: 1100px;
     margin: auto;
     text-align: center;
+
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s ease forwards;
 }
 
-h2 {
-    color: #b58cff;
+section:nth-of-type(1) { animation-delay: 0.2s; }
+section:nth-of-type(2) { animation-delay: 0.4s; }
+section:nth-of-type(3) { animation-delay: 0.6s; }
+
+/* TITULOS DE SEÇÃO */
+section h2 {
+    font-size: 2.3rem;
+    margin-bottom: 15px;
+    color: var(--secondary);
+}
+
+section p {
+    color: var(--text-muted);
     margin-bottom: 20px;
-    font-size: 2.2rem;
 }
 
-.subtexto {
-    color: #ccc;
-    margin-bottom: 40px;
-}
-
-/* BENEFÍCIOS */
-.beneficios {
+/* ================= LISTA ================= */
+ul {
     list-style: none;
-    max-width: 500px;
-    margin: auto;
+    margin-top: 25px;
 }
 
-.beneficios li {
-    background: #1a1535;
-    padding: 15px;
-    margin-bottom: 12px;
+ul li {
+    background: var(--bg-card);
+    margin: 12px auto;
+    padding: 18px;
     border-radius: 14px;
+    max-width: 500px;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 40px;
 }
 
+/* CARD */
 .card {
-    background: #1a1535;
-    padding: 30px;
+    background: var(--bg-card);
+    padding: 30px 25px;
     border-radius: 18px;
-    transition: .3s;
+    width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 0 25px rgba(122, 0, 255, 0.15);
+    transition: 0.35s ease;
 }
 
-.card:hover {
-    transform: translateY(-10px);
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
 }
 
 .card a {
-    display: inline-block;
-    margin-top: 15px;
-    background: #00ffcc;
+    background: var(--primary);
     color: #000;
-    padding: 12px 30px;
+    padding: 12px 28px;
     border-radius: 25px;
     font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.card a:hover {
+    background: #ffffff;
+}
+
+/* HOVER */
+.card:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 0 35px rgba(122, 0, 255, 0.4);
 }
 
 /* DESTAQUE */
-.destaque {
-    border: 2px solid #00ffcc;
+.card.destaque {
+    border: 2px solid var(--primary);
     animation: pulse 2s infinite;
 }
 
-/* COMO FUNCIONA */
-.como-funciona {
-    background: #0a081a;
+/* ================= ICONES PNG ================= */
+.icon {
+    width: 28px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 6px;
+
+    background: transparent;
+
+    /* brilho leve sem alterar cor */
+    filter: drop-shadow(0 0 6px rgba(0, 255, 204, 0.4));
 }
 
-.steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 25px;
-}
-
-.step {
-    background: #1a1535;
-    padding: 30px;
-    border-radius: 18px;
-}
-
-.step span {
-    display: inline-block;
-    background: #00ffcc;
-    color: #000;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-/* FOOTER */
+/* ================= RODAPÉ ================= */
 footer {
     background: #0a081a;
-    padding: 30px;
+    padding: 35px 20px;
     text-align: center;
-    font-size: .9rem;
-    color: #ccc;
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
-/* ANIMAÇÃO */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 rgba(0,255,204,.4); }
-    50% { box-shadow: 0 0 25px rgba(0,255,204,.8); }
-    100% { box-shadow: 0 0 0 rgba(0,255,204,.4); }
-}
-
-/* RESPONSIVO */
+/* ================= RESPONSIVO ================= */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.2rem; }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    section {
+        padding: 60px 15px;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .card.destaque {
+        animation: none;
+    }
+}
+
+/* ================= ANIMAÇÕES ================= */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 rgba(0, 255, 204, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(0, 255, 204, 0.8); }
+    100% { box-shadow: 0 0 0 rgba(0, 255, 204, 0.4); }
 }
