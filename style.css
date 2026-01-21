@@ -1,424 +1,152 @@
-/* =====================================================
-   FONTE PERSONALIZADA (DRAGON CITY)
-===================================================== */
 @font-face {
     font-family: "DragonFont";
     src: url("./fonts/curse-casual.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
 
-/* =====================================================
-   RESET
-===================================================== */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* =====================================================
-   VARIÁVEIS
-===================================================== */
-:root {
-    --bg-main: #0d0b1f;
-    --bg-card: #1a1535;
-    --primary: #00ffcc;
-    --secondary: #b58cff;
-    --text-light: #ffffff;
-    --text-muted: #cccccc;
-}
-
-/* =====================================================
-   BODY
-===================================================== */
+/* BASE */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--bg-main);
-    color: var(--text-light);
-    line-height: 1.6;
+    background: #0d0b1f;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 
-/* =====================================================
-   LINKS
-===================================================== */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* =====================================================
-   HERO / HEADER
-===================================================== */
-header.hero {
+/* HERO */
+.hero {
     min-height: 100vh;
-    background:
-        linear-gradient(rgba(13,11,31,.85), rgba(13,11,31,.85)),
-        url("img/banner.jpg") center / cover no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(rgba(13,11,31,.85), rgba(13,11,31,.85)),
+    url("img/banner.jpg") center/cover;
     text-align: center;
     padding: 40px 20px;
 }
 
 .logo {
-    width: 150px;
+    width: 140px;
     margin-bottom: 25px;
 }
 
-header h1 {
-    font-family: "DragonFont", Arial, sans-serif;
+.hero h1 {
+    font-family: "DragonFont";
     font-size: 3rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    text-shadow: 0 6px 18px rgba(0,0,0,.6);
+    color: #b58cff;
 }
 
-header p {
-    max-width: 600px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
+.hero p {
+    opacity: .85;
+    margin: 20px 0;
 }
 
-/* BOTÃO WHATSAPP */
 .btn-whatsapp {
-    background: var(--primary);
-    color: #000;
-    padding: 15px 40px;
+    background: #00ffcc;
+    padding: 14px 34px;
     border-radius: 30px;
+    color: #000;
     font-weight: bold;
-    transition: .3s;
 }
 
-.btn-whatsapp:hover {
-    background: #fff;
-    transform: scale(1.05);
-}
-
-/* =====================================================
-   SEÇÕES
-===================================================== */
+/* SECTIONS */
 section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 80px 20px;
+    padding: 60px 20px;
     text-align: center;
-
-    opacity: 0;
-    transform: translateY(40px);
-    transition: .7s ease;
-}
-
-section.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 section h2 {
-    font-family: "DragonFont", Arial, sans-serif;
+    font-family: "DragonFont";
     font-size: 2.2rem;
-    color: var(--secondary);
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
-section p {
-    color: var(--text-muted);
-}
-
-/* =====================================================
-   BENEFÍCIOS
-===================================================== */
-.beneficios ul {
-    list-style: none;
-    margin-top: 25px;
-}
-
-.beneficios li {
-    background: var(--bg-card);
-    max-width: 500px;
-    margin: 12px auto;
-    padding: 18px;
-    border-radius: 14px;
-}
-
-/* =====================================================
-   CARDS
-===================================================== */
+/* CARDS */
 .cards {
     display: flex;
     gap: 25px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 40px;
 }
 
 .card {
-    background: linear-gradient(145deg, #1a1535, #120f2b);
     width: 280px;
-    padding: 30px 25px;
+    background: linear-gradient(145deg, #1a1535, #120f2b);
     border-radius: 18px;
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,.45);
-    transition: .35s ease;
-
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card h3 {
-    font-family: "DragonFont", Arial, sans-serif;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.card p {
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
-
-/* BOTÃO CARD */
-.card a {
-    background: var(--primary);
-    color: #000;
-    padding: 12px 28px;
-    border-radius: 25px;
-    font-weight: bold;
+    padding: 30px;
     transition: .3s;
 }
 
-.card a:hover {
-    background: #fff;
-}
-
-/* HOVER */
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 35px rgba(0,0,0,.6);
+    transform: translateY(-8px);
 }
 
-/* BRILHO */
-.card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent, rgba(181,140,255,.25), transparent);
-    opacity: 0;
-    transition: .5s;
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 28px;
+    border-radius: 25px;
+    background: #00ffcc;
+    color: #000;
+    font-weight: bold;
 }
 
-.card:hover::after {
-    opacity: 1;
+/* GEMAS */
+.produtos.gemas h2 {
+    color: #b58cff;
 }
 
-/* CARD DESTAQUE */
+/* COMIDA */
+.produtos.comida {
+    background: linear-gradient(180deg, #120015, #2a0000);
+}
+
+.produtos.comida h2 {
+    color: #ff5a5a;
+}
+
+.produtos.comida .card {
+    border: 2px solid rgba(255, 90, 90, 0.5);
+}
+
+.produtos.comida .card a {
+    background: linear-gradient(135deg, #ff4d4d, #ff7a7a);
+}
+
+/* DESTAQUE */
 .card.destaque {
-    border: 2px solid var(--primary);
-    animation: pulse 2s infinite;
+    border: 2px solid #fff;
 }
 
-/* =====================================================
-   ÍCONES PNG
-===================================================== */
-.icon {
-    width: 28px;
-    vertical-align: middle;
-    margin-right: 6px;
-    filter: drop-shadow(0 0 6px rgba(0,255,204,.4));
+/* BENEFÍCIOS */
+.beneficios ul {
+    list-style: none;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+.beneficios li {
+    background: #1a1535;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+}
+
+/* FOOTER */
 footer {
     background: #0a081a;
-    padding: 35px 20px;
-    text-align: center;
-    color: var(--text-muted);
+    padding: 30px;
     font-size: .9rem;
+    opacity: .7;
 }
 
-/* =====================================================
-   LOADER
-===================================================== */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: var(--bg-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.dragon-loader {
-    width: 70px;
-    height: 70px;
-    border: 6px solid #2a245a;
-    border-top: 6px solid var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-/* =====================================================
-   ANIMAÇÕES
-===================================================== */
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 rgba(0,255,204,.4); }
-    50% { box-shadow: 0 0 25px rgba(0,255,204,.8); }
-    100% { box-shadow: 0 0 0 rgba(0,255,204,.4); }
-}
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
+/* MOBILE */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    .logo {
-        width: 120px;
-    }
-
     section {
-        padding: 60px 15px;
+        padding: 35px 15px;
     }
 
     .card {
         width: 100%;
         max-width: 320px;
     }
-
-    .card.destaque {
-        animation: none;
-    }
-}
-@media (max-width: 768px) {
-    section {
-        padding: 45px 15px;
-    }
-
-    /* Ajuste fino apenas entre benefícios e pacotes */
-    .beneficios {
-        padding-bottom: 25px;
-    }
-
-    .produtos {
-        padding-top: 25px;
-    }
-}
-@media (max-width: 768px) {
-
-    /* Diminui MUITO o padding geral das sections */
-    section {
-        padding: 30px 14px;
-    }
-
-    /* Remove espaço extra abaixo da section de benefícios */
-    .beneficios {
-        padding-bottom: 10px;
-        margin-bottom: 0;
-    }
-
-    /* Remove espaço extra acima dos produtos */
-    .produtos {
-        padding-top: 10px;
-        margin-top: 0;
-    }
-
-    /* Ajusta o título para não empurrar pra baixo */
-    .produtos h2 {
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    /* Ajusta lista de benefícios */
-    .beneficios ul {
-        margin-bottom: 0;
-    }
-}
-/* =========================
-   TEMA VERMELHO - PRODUTOS
-   (GEMAS + COMIDA)
-========================= */
-
-.produtos {
-    background: radial-gradient(circle at top, #3a0b0b, #0d0b1f 70%);
-    border-radius: 30px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding: 70px 20px;
-}
-
-/* TÍTULOS DAS SEÇÕES */
-.produtos h2 {
-    color: #ff5a5a;
-    text-shadow: 0 0 12px rgba(255, 90, 90, 0.6);
-}
-
-/* CARDS DENTRO DAS SEÇÕES DE PRODUTOS */
-.produtos .card {
-    background: linear-gradient(160deg, #1a0f2e, #0e0b1f);
-    border: 2px solid rgba(255, 90, 90, 0.6);
-    box-shadow: 0 0 30px rgba(255, 60, 60, 0.25);
-}
-
-/* HOVER DOS CARDS */
-.produtos .card:hover,
-.produtos .card.hover-js {
-    box-shadow: 0 0 45px rgba(255, 60, 60, 0.6);
-    transform: translateY(-12px) scale(1.04);
-}
-
-/* BOTÕES DE COMPRA */
-.produtos .card a {
-    background: linear-gradient(135deg, #ff4d4d, #ff7a7a);
-    color: #1a0b0b;
-}
-
-/* HOVER BOTÕES */
-.produtos .card a:hover {
-    background: #ff9b9b;
-}
-
-/* CARD MAIS VENDIDO */
-.produtos .card.destaque {
-    border-color: #ff3c3c;
-    animation: pulseRed 2s infinite;
-}
-
-/* ANIMAÇÃO DO MAIS VENDIDO */
-@keyframes pulseRed {
-    0% {
-        box-shadow: 0 0 0 rgba(255, 60, 60, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 35px rgba(255, 60, 60, 0.9);
-    }
-    100% {
-        box-shadow: 0 0 0 rgba(255, 60, 60, 0.5);
-    }
-}
-
-/* ÍCONES NAS SEÇÕES VERMELHAS */
-.produtos .icon {
-    filter: drop-shadow(0 0 8px rgba(255, 90, 90, 0.7));
 }
