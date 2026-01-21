@@ -1,3 +1,11 @@
+/* ================= FONTE DRAGON CITY ================= */
+@font-face {
+    font-family: "DragonCity";
+    src: url("fonts/DragonCity.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* ================= RESET ================= */
 * {
     margin: 0;
@@ -51,12 +59,22 @@ header {
     margin-bottom: 25px;
 }
 
-/* TITULOS */
+/* TÍTULOS COM FONTE DRAGON */
+header h1,
+section h2,
+.card h3 {
+    font-family: "DragonCity", serif;
+    letter-spacing: 1px;
+}
+
+/* TÍTULO PRINCIPAL */
 header h1 {
     font-size: 3rem;
     margin-bottom: 12px;
+    text-shadow: 0 0 14px rgba(181, 140, 255, 0.6);
 }
 
+/* SUBTÍTULO */
 header p {
     font-size: 1.2rem;
     max-width: 600px;
@@ -86,17 +104,9 @@ section {
     max-width: 1100px;
     margin: auto;
     text-align: center;
-
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeUp 0.8s ease forwards;
 }
 
-section:nth-of-type(1) { animation-delay: 0.2s; }
-section:nth-of-type(2) { animation-delay: 0.4s; }
-section:nth-of-type(3) { animation-delay: 0.6s; }
-
-/* TITULOS DE SEÇÃO */
+/* TÍTULOS DE SEÇÃO */
 section h2 {
     font-size: 2.3rem;
     margin-bottom: 15px;
@@ -132,7 +142,6 @@ ul li {
     margin-top: 40px;
 }
 
-/* CARD */
 .card {
     background: var(--bg-card);
     padding: 30px 25px;
@@ -145,11 +154,9 @@ ul li {
 
     box-shadow: 0 0 25px rgba(122, 0, 255, 0.15);
     transition: 0.35s ease;
-}
 
-.card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
 .card p {
@@ -170,29 +177,55 @@ ul li {
     background: #ffffff;
 }
 
-/* HOVER */
+/* HOVER PREMIUM */
 .card:hover {
     transform: translateY(-10px) scale(1.04);
     box-shadow: 0 0 35px rgba(122, 0, 255, 0.4);
 }
 
-/* DESTAQUE */
+/* BRILHO DRAGON */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: linear-gradient(120deg, transparent, rgba(181,140,255,0.25), transparent);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* CARD DESTAQUE */
 .card.destaque {
     border: 2px solid var(--primary);
     animation: pulse 2s infinite;
 }
 
-/* ================= ICONES PNG ================= */
+/* ================= ÍCONES PNG ================= */
 .icon {
     width: 28px;
     height: auto;
     vertical-align: middle;
     margin-right: 6px;
-
     background: transparent;
-
-    /* brilho leve sem alterar cor */
     filter: drop-shadow(0 0 6px rgba(0, 255, 204, 0.4));
+}
+
+/* ================= ANIMAÇÕES COM JS ================= */
+section,
+.card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.7s ease;
+}
+
+section.show,
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ================= RODAPÉ ================= */
@@ -237,14 +270,7 @@ footer {
     }
 }
 
-/* ================= ANIMAÇÕES ================= */
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* ================= KEYFRAMES ================= */
 @keyframes pulse {
     0% { box-shadow: 0 0 0 rgba(0, 255, 204, 0.4); }
     50% { box-shadow: 0 0 25px rgba(0, 255, 204, 0.8); }
