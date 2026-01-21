@@ -325,4 +325,35 @@ footer {
         padding-top: 25px;
     }
 }
+@media (max-width: 768px) {
+
+    /* Diminui MUITO o padding geral das sections */
+    section {
+        padding: 30px 14px;
+    }
+
+    /* Remove espaço extra abaixo da section de benefícios */
+    .beneficios {
+        padding-bottom: 10px;
+        margin-bottom: 0;
+    }
+
+    /* Remove espaço extra acima dos produtos */
+    .produtos {
+        padding-top: 10px;
+        margin-top: 0;
+    }
+
+    /* Ajusta o título para não empurrar pra baixo */
+    .produtos h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    /* Ajusta lista de benefícios */
+    .beneficios ul {
+        margin-bottom: 0;
+    }
+}
+
 
