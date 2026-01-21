@@ -311,3 +311,18 @@ footer {
         animation: none;
     }
 }
+@media (max-width: 768px) {
+    section {
+        padding: 45px 15px;
+    }
+
+    /* Ajuste fino apenas entre benefícios e pacotes */
+    .beneficios {
+        padding-bottom: 25px;
+    }
+
+    .produtos {
+        padding-top: 25px;
+    }
+}
+
