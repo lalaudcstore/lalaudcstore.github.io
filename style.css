@@ -53,13 +53,11 @@ header {
     padding: 40px;
 }
 
-/* LOGO */
 .logo {
     width: 150px;
     margin-bottom: 25px;
 }
 
-/* TÍTULOS COM FONTE DRAGON */
 header h1,
 section h2,
 .card h3 {
@@ -67,14 +65,12 @@ section h2,
     letter-spacing: 1px;
 }
 
-/* TÍTULO PRINCIPAL */
 header h1 {
     font-size: 3rem;
     margin-bottom: 12px;
     text-shadow: 0 0 14px rgba(181, 140, 255, 0.6);
 }
 
-/* SUBTÍTULO */
 header p {
     font-size: 1.2rem;
     max-width: 600px;
@@ -82,7 +78,6 @@ header p {
     color: var(--text-muted);
 }
 
-/* BOTÃO PRINCIPAL */
 header a {
     display: inline-block;
     background: var(--primary);
@@ -106,7 +101,6 @@ section {
     text-align: center;
 }
 
-/* TÍTULOS DE SEÇÃO */
 section h2 {
     font-size: 2.3rem;
     margin-bottom: 15px;
@@ -177,102 +171,48 @@ ul li {
     background: #ffffff;
 }
 
-/* HOVER PREMIUM */
-.card:hover {
-    transform: translateY(-10px) scale(1.04);
-    box-shadow: 0 0 35px rgba(122, 0, 255, 0.4);
-}
-
-/* BRILHO DRAGON */
-.card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    background: linear-gradient(120deg, transparent, rgba(181,140,255,0.25), transparent);
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.card:hover::after {
-    opacity: 1;
-}
-
-/* CARD DESTAQUE */
-.card.destaque {
-    border: 2px solid var(--primary);
-    animation: pulse 2s infinite;
-}
-
-/* ================= ÍCONES PNG ================= */
-.icon {
-    width: 28px;
-    height: auto;
-    vertical-align: middle;
-    margin-right: 6px;
-    background: transparent;
-    filter: drop-shadow(0 0 6px rgba(0, 255, 204, 0.4));
-}
-
-/* ================= ANIMAÇÕES COM JS ================= */
+/* ================= ANIMAÇÃO CONTROLADA PELO JS ================= */
 section,
 .card {
     opacity: 0;
     transform: translateY(40px);
-    transition: 0.7s ease;
+    transition: all 0.6s ease;
+    pointer-events: none;
 }
 
 section.show,
 .card.show {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
-/* ================= RODAPÉ ================= */
-footer {
-    background: #0a081a;
-    padding: 35px 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
+/* HOVER PREMIUM */
+.card.hover-js {
+    transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.45);
 }
 
-/* ================= RESPONSIVO ================= */
-@media (max-width: 768px) {
-
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    .logo {
-        width: 120px;
-    }
-
-    section {
-        padding: 60px 15px;
-    }
-
-    section h2 {
-        font-size: 1.8rem;
-    }
-
-    .card {
-        width: 100%;
-        max-width: 320px;
-    }
-
-    .card.destaque {
-        animation: none;
-    }
+/* ================= LOADER ================= */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #0d0b1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
 }
 
-/* ================= KEYFRAMES ================= */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 rgba(0, 255, 204, 0.4); }
-    50% { box-shadow: 0 0 25px rgba(0, 255, 204, 0.8); }
-    100% { box-shadow: 0 0 0 rgba(0, 255, 204, 0.4); }
+.dragon-loader {
+    width: 70px;
+    height: 70px;
+    border: 6px solid #2a245a;
+    border-top: 6px solid #00ffcc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
