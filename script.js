@@ -1,14 +1,17 @@
-// ================= LOADER =================
+// ================================
+// LOADER
+// ================================
 window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
     if (loader) {
-        loader.style.opacity = "0";
-        setTimeout(() => loader.remove(), 500);
+        loader.style.display = "none";
     }
 });
 
-// ================= ANIMAÇÃO SCROLL =================
-const observer = new IntersectionObserver((entries) => {
+// ================================
+// ANIMAÇÃO DE SEÇÕES / CARDS
+// ================================
+const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
@@ -16,12 +19,38 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.2 });
 
-document.querySelectorAll("section, .card").forEach(el => observer.observe(el));
+document.querySelectorAll("section, .card").forEach(el => {
+    observer.observe(el);
+});
 
-// ================= PULSE BOTÃO =================
-const whatsappBtn = document.querySelector(".btn-whatsapp");
-if (whatsappBtn) {
-    setInterval(() => {
-        whatsappBtn.classList.toggle("pulse");
-    }, 2200);
-}
+// ================================
+// SOM + WHATSAPP
+// ================================
+const clickSound = new Audio("sound/click.mp3");
+
+// evita erro se o áudio ainda não carregou
+clickSound.preload = "auto";
+
+document.querySelectorAll(".btn-comprar").forEach(botao => {
+    botao.addEventListener("click", function (e) {
+        e.preventDefault(); // segura o link
+
+        // toca o som
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+
+        const produto = this.dataset.produto || "produto";
+        const numero = "5547999416062";
+
+        const mensagem = encodeURIComponent(
+            `Olá! Tenho interesse em comprar ${produto}.`
+        );
+
+        const link = `https://wa.me/${numero}?text=${mensagem}`;
+
+        // pequeno delay para o som tocar
+        setTimeout(() => {
+            window.open(link, "_blank");
+        }, 300);
+    });
+});
