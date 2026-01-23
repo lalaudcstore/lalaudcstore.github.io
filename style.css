@@ -680,4 +680,109 @@ body.scrolled .scroll-indicator{
   pointer-events: none;
   transform: translateX(-50%) translateY(10px);
 }
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
+/* =====================================================
+   FIX — BARRA BRANCA À DIREITA (OVERFLOW)
+   - Usa overflow-x: clip (mais forte que hidden)
+   - Ajusta scrollbar para tema escuro (Chrome/Edge/Firefox)
+   - Garante que pseudo-elementos/glows não criem largura extra
+===================================================== */
+html, body{
+  overflow-x: clip;
+}
+
+/* Evita qualquer item forçar largura maior que a tela */
+body{
+  max-width: 100%;
+}
+
+/* Scrollbar (Chrome/Edge) */
+::-webkit-scrollbar{ width: 10px; }
+::-webkit-scrollbar-track{ background: #0d0b1f; }
+::-webkit-scrollbar-thumb{ background: #2a245a; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover{ background: #3a2f7a; }
+
+/* Scrollbar (Firefox) */
+*{ scrollbar-color: #2a245a #0d0b1f; scrollbar-width: thin; }
+
+/* =====================================================
+   FIX — SETA (garante que some ao rolar)
+   (override final para evitar conflitos com regras duplicadas)
+===================================================== */
+.scroll-indicator{
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 22px !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none !important;
+  z-index: 999 !important;
+}
+
+body.scrolled .scroll-indicator,
+.scroll-indicator.hidden{
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(10px) !important;
+  transition: opacity .35s ease, transform .35s ease !important;
+}
+/* =========================
+   MOBILE SMOOTH PACK
+   (mais liso, menos travadinhas)
+========================= */
+
+/* 1) Scroll suave e sem “puxadas” */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2) Evita repaints pesados por overflow/glow */
+html, body {
+  overflow-x: clip;
+}
+
+/* 3) Toque mais responsivo em botões */
+a, button, .btn-comprar {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 4) Reduz efeitos PESADOS no mobile (blur/shadow grandes) */
+@media (max-width: 768px) {
+
+  /* reduz blur dos glows de fundo (muito pesado em celular) */
+  .produtos-gemas::before,
+  .produtos-comida::before,
+  .produtos-essencias::before,
+  .produtos-curingas::before {
+    filter: blur(55px) !important;
+    opacity: 0.65 !important;
+  }
+
+  /* reduz sombras enormes dos cards */
+  .card {
+    box-shadow: 0 10px 22px rgba(0,0,0,0.40) !important;
+    transition: transform .2s ease, box-shadow .2s ease !important;
+  }
+
+  /* tira hover/tilt exagerado (mobile não usa hover mesmo) */
+  .card:hover {
+    transform: none !important;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.40) !important;
+  }
+
+  /* shimmer/efeito overlay também pesa */
+  .card::after {
+    opacity: 0 !important;
+  }
+}
+
+/* 5) Render mais estável em elementos com animação */
+.scroll-indicator,
+.fx-nav,
+.fx-hud {
+  will-change: transform, opacity;
+}

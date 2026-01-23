@@ -1,3 +1,4 @@
+const isTouch = matchMedia("(pointer: coarse)").matches;
 (() => {
   const WHATSAPP_NUMBER = "5547999416062";
   const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
