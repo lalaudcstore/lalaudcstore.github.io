@@ -413,3 +413,37 @@
   });
   mo.observe(document.body, { childList: true, subtree: true });
 })();
+let audioUnlocked = false;
+
+function unlockAudio() {
+  if (audioUnlocked) return;
+  audioUnlocked = true;
+
+  const a = new Audio("./sound/click.mp3");
+  a.volume = 0;
+  a.play().then(() => {
+    a.pause();
+    a.currentTime = 0;
+  }).catch(() => {});
+}
+
+window.addEventListener("touchstart", unlockAudio, { once: true });
+window.addEventListener("click", unlockAudio, { once: true });
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    document.body.classList.add("scrolled");
+  } else {
+    document.body.classList.remove("scrolled");
+  }
+});
+const scrollIndicator = document.querySelector('.scroll-indicator');
+
+if (scrollIndicator) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      scrollIndicator.classList.add('hidden');
+    } else {
+      scrollIndicator.classList.remove('hidden');
+    }
+  });
+}

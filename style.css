@@ -472,3 +472,212 @@ html, body {
   position: relative;
   z-index: 2;
 }
+
+/* =====================================================
+   AJUSTE 1 (CLIENTE) — REMOVER BOTÃO FLUTUANTE WHATSAPP NO MOBILE
+   (não altera mais nada do site)
+   Observação: o botão flutuante é criado pelo fx.js como .fx-cta
+===================================================== */
+@media (max-width: 768px){
+  .fx-cta{
+    display: none !important;
+  }
+}
+.grupos-dc {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.grupos-dc h2 {
+  color: #b38cff;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.grupos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grupo-card {
+  background: linear-gradient(145deg, #241a4a, #1a1236);
+  border-radius: 16px;
+  padding: 16px;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.grupo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0,255,200,0.35);
+}
+
+.grupo-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.grupo-card span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.grupo-card button {
+  background: linear-gradient(90deg, #00ffb2, #00d4ff);
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+/* ============================= */
+/* CORES POR TIPO DE PRODUTO     */
+/* ============================= */
+
+/* GEMAS — ROXO */
+.produtos-gemas .btn-comprar {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
+}
+
+/* COMIDA — VERMELHO */
+.produtos-comida .btn-comprar {
+  background: linear-gradient(135deg, #ff5f5f, #e11d48);
+  box-shadow: 0 0 18px rgba(255, 95, 95, 0.6);
+}
+
+/* ESSÊNCIAS — VERDE */
+.produtos-essencias .btn-comprar {
+  background: linear-gradient(135deg, #22ffb1, #00d084);
+  box-shadow: 0 0 18px rgba(34, 255, 177, 0.6);
+}
+
+/* CURINGAS — AMARELO */
+.produtos-curingas .btn-comprar {
+  background: linear-gradient(135deg, #ffd84d, #facc15);
+  color: #1a1a1a;
+  box-shadow: 0 0 18px rgba(255, 216, 77, 0.6);
+}
+
+/* ============================= */
+/* AURA ESPECIAL — MAIS VENDIDO  */
+/* ============================= */
+
+.card.destaque {
+  position: relative;
+  z-index: 1;
+}
+
+/* Aura animada */
+.card.destaque::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 20px;
+  filter: blur(18px);
+  opacity: 0.85;
+  z-index: -1;
+  animation: auraPulse 3s ease-in-out infinite;
+}
+
+/* Cor da aura por seção */
+.produtos-gemas .card.destaque::before {
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+}
+
+.produtos-comida .card.destaque::before {
+  background: radial-gradient(circle, #ff5f5f, transparent 70%);
+}
+
+.produtos-essencias .card.destaque::before {
+  background: radial-gradient(circle, #22ffb1, transparent 70%);
+}
+
+.produtos-curingas .card.destaque::before {
+  background: radial-gradient(circle, #ffd84d, transparent 70%);
+}
+
+/* Animação suave */
+@keyframes auraPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+}
+
+/* ============================= */
+/* HOVER MAIS GAMER              */
+/* ============================= */
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  transition: all 0.25s ease;
+}
+.scroll-indicator{
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: rgba(10,8,26,0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px rgba(181,140,255,0.18), 0 0 24px rgba(181,140,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: bounceDown 2.1s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.scroll-indicator span{
+  width: 12px;
+  height: 12px;
+  border-right: 3px solid #b58cff;
+  border-bottom: 3px solid #b58cff;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0 10px rgba(181,140,255,0.65));
+}
+
+@keyframes bounceDown{
+  0%,100%{ transform: translate(-50%, 0); opacity: .75; }
+  50%{ transform: translate(-50%, 10px); opacity: 1; }
+}
+
+body.scrolled .scroll-indicator{
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}
+
