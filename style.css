@@ -450,3 +450,25 @@ footer{
   .produtos h2{ margin-top:0; margin-bottom:20px; }
   .beneficios ul{ margin-bottom:0; }
 }
+/* Mobile safety: evita scroll lateral e melhora toque */
+html, body {
+  overflow-x: hidden;
+}
+
+.cards {
+  justify-content: center;
+}
+
+.card a, .btn-whatsapp {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Garante que o conteúdo fica acima de qualquer glow */
+.produtos-gemas > *,
+.produtos-comida > *,
+.produtos-essencias > *,
+.produtos-curingas > * {
+  position: relative;
+  z-index: 2;
+}
