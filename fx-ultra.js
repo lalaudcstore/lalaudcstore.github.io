@@ -1,14 +1,4 @@
-/* =========================================================
-   LALAUDC STORE — ULTRA v2 (JS ONLY, SAFE)
-   - Desktop: 3D tilt + dynamic shadow + specular shine
-             section spotlight + hero parallax + premium highlight
-             stagger reveal + click micro-feedback
-   - Mobile: lightweight mode (no heavy effects)
-   - Does NOT modify your HTML/CSS files (injects small CSS)
-   - Works alongside existing script.js + fx.js
-========================================================= */
 (() => {
-  // ---------- Safety / Perf Gates ----------
   const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = matchMedia("(pointer: coarse)").matches || matchMedia("(hover: none)").matches;
   const canDoHeavy = !prefersReduced && !isTouch;
@@ -17,7 +7,6 @@
   const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
-  // ---------- Themes by section ----------
   const THEMES = [
     { sel: ".produtos-gemas",     rgb: "181,140,255" }, // purple
     { sel: ".produtos-comida",    rgb: "255,90,90"   }, // red
@@ -32,10 +21,8 @@
     return { sel: "", rgb: "0,255,204" }; // fallback teal
   }
 
-  // ---------- Inject CSS (isolated) ----------
   const css = document.createElement("style");
   css.textContent = `
-    /* ULTRA: card layers */
     .ultra-tilt { transform-style: preserve-3d; will-change: transform; }
     .ultra-shine {
       position:absolute; inset:0; pointer-events:none;
@@ -50,7 +37,6 @@
       will-change: transform, opacity;
     }
 
-    /* ULTRA: section spotlight */
     .ultra-spot {
       position:absolute; inset:-90px;
       pointer-events:none; z-index:0;
@@ -59,10 +45,8 @@
     }
     .ultra-spot.on { opacity:.78; }
 
-    /* Keep section content above spotlight */
     .ultra-spot + * { position: relative; z-index: 2; }
 
-    /* ULTRA: premium aura for destaque */
     .ultra-premium {
       position: relative;
       z-index: 1;
@@ -82,13 +66,11 @@
       100%{ transform: scale(.98); opacity:.55; }
     }
 
-    /* ULTRA: click micro feedback */
     .ultra-press {
       transform: translateY(-2px) scale(1.01);
       transition: transform .12s ease;
     }
 
-    /* ULTRA: subtle reveal */
     .ultra-reveal { opacity: 0; transform: translateY(14px); }
     .ultra-reveal.ultra-in { opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
 
@@ -101,7 +83,6 @@
   `;
   document.head.appendChild(css);
 
-  // ---------- Helper: rAF throttle ----------
   function rafThrottle(fn) {
     let running = false;
     let lastArgs = null;
@@ -116,9 +97,6 @@
     };
   }
 
-  // =========================================================
-  // 1) HERO PARALLAX (desktop only, very subtle)
-  // =========================================================
   const hero = qs("header.hero");
   if (hero && canDoHeavy) {
     const onScroll = rafThrottle(() => {
@@ -130,9 +108,6 @@
     onScroll();
   }
 
-  // =========================================================
-  // 2) SECTION SPOTLIGHT (desktop only)
-  // =========================================================
   if (canDoHeavy) {
     THEMES.forEach(t => {
       const sec = qs(t.sel);
@@ -170,31 +145,22 @@
     });
   }
 
-  // =========================================================
-  // 3) TRUE 3D TILT on cards (desktop only)
-  // =========================================================
   const cards = qsa(".card");
   cards.forEach(card => {
     if (card.dataset.ultraBound) return;
     card.dataset.ultraBound = "1";
 
-    // Premium aura for "destaque" (desktop+mobile, but light)
     if (card.classList.contains("destaque")) {
       card.classList.add("ultra-premium");
-      // colorize aura by section theme
       const t = themeOf(card);
       card.style.setProperty("--ultra-rgb", t.rgb);
       card.style.setProperty("--ultra-aura", `radial-gradient(circle, rgba(${t.rgb},0.75) 0%, rgba(${t.rgb},0.20) 42%, rgba(${t.rgb},0) 70%)`);
-      // apply aura via inline to avoid CSS conflicts
-      // (keeps your existing aura working; this boosts it)
       card.style.setProperty("--_ultraAura", `radial-gradient(circle, rgba(${t.rgb},0.75) 0%, rgba(${t.rgb},0.18) 48%, rgba(${t.rgb},0) 72%)`);
       card.style.setProperty("position", getComputedStyle(card).position === "static" ? "relative" : getComputedStyle(card).position);
-      // overwrite pseudo background safely by setting a box-shadow fallback on mobile
-      if (isTouch) {
+      {
         card.style.boxShadow = `0 0 28px rgba(${t.rgb},0.18), 0 14px 28px rgba(0,0,0,0.45)`;
       } else {
-        // colorize the aura pseudo element by injecting style rule per card
-        // (safe: unique selector via data-ultra-id)
+       
         const id = "u" + Math.random().toString(16).slice(2);
         card.dataset.ultraId = id;
         const rule = document.createElement("style");
@@ -203,7 +169,6 @@
       }
     }
 
-    // Click micro press (desktop+mobile)
     card.addEventListener("pointerdown", () => card.classList.add("ultra-press"));
     card.addEventListener("pointerup", () => card.classList.remove("ultra-press"));
     card.addEventListener("pointercancel", () => card.classList.remove("ultra-press"));
@@ -277,9 +242,6 @@
     card.addEventListener("mouseleave", onLeave);
   });
 
-  // =========================================================
-  // 4) "Destaque" extra particles on click (desktop only, controlled)
-  // =========================================================
   if (canDoHeavy) {
     const fxLayer = (() => {
       let el = qs("#ultra-layer");
@@ -330,7 +292,6 @@
       }
     }
 
-    // Only for "destaque" buy buttons
     const destaqueBtns = qsa(".card.destaque .btn-comprar, .card.destaque a.btn-comprar, .card.destaque a");
     destaqueBtns.forEach(btn => {
       if (btn.dataset.ultraBurst) return;
@@ -345,11 +306,6 @@
     });
   }
 
-  // =========================================================
-  // 5) Stagger reveal (safe, won't break existing animations)
-  // =========================================================
-  // We only add reveal to cards that are not already visible,
-  // and we do nothing on reduced motion.
   if (!prefersReduced) {
     const targets = qsa(".card").filter(el => !el.classList.contains("ultra-reveal"));
     targets.forEach(el => el.classList.add("ultra-reveal"));

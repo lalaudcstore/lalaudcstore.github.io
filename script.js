@@ -1,6 +1,3 @@
-// ================================
-// LOADER
-// ================================
 window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
     if (loader) {
@@ -8,9 +5,6 @@ window.addEventListener("load", () => {
     }
 });
 
-// ================================
-// ANIMAÇÃO DE SEÇÕES / CARDS
-// ================================
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -23,19 +17,14 @@ document.querySelectorAll("section, .card").forEach(el => {
     observer.observe(el);
 });
 
-// ================================
-// SOM + WHATSAPP
-// ================================
 const clickSound = new Audio("sound/click.mp3");
 
-// evita erro se o áudio ainda não carregou
 clickSound.preload = "auto";
 
 document.querySelectorAll(".btn-comprar").forEach(botao => {
     botao.addEventListener("click", function (e) {
         e.preventDefault(); // segura o link
 
-        // toca o som
         clickSound.currentTime = 0;
         clickSound.play().catch(() => {});
 
@@ -48,13 +37,11 @@ document.querySelectorAll(".btn-comprar").forEach(botao => {
 
         const link = `https://wa.me/${numero}?text=${mensagem}`;
 
-        // pequeno delay para o som tocar
         setTimeout(() => {
             window.open(link, "_blank");
         }, 300);
     });
 });
-// FAQ INTERATIVO
 document.querySelectorAll(".faq-question").forEach((btn) => {
   btn.addEventListener("click", () => {
     const item = btn.parentElement;

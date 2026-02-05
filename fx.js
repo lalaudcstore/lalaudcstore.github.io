@@ -50,7 +50,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   }
 
-  // ---------- Inject CSS ----------
   const style = document.createElement("style");
   style.textContent = `
     #fx-layer{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden}
@@ -96,7 +95,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
   `;
   document.head.appendChild(style);
 
-  // ---------- Layers ----------
   const fxLayer = document.createElement("div");
   fxLayer.id = "fx-layer";
   document.body.appendChild(fxLayer);
@@ -131,7 +129,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     hero.insertAdjacentElement("afterend", wrap);
   }
 
-  // ---------- Audio (optional) ----------
   const audioCache = new Map();
   function playSound(path) {
     if (prefersReduced) return;
@@ -141,7 +138,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     try { a.currentTime = 0; a.volume = 0.65; a.play().catch(() => {}); } catch {}
   }
 
-  // ---------- Floating text ----------
   function showFloatText(x, y, text, theme) {
     if (prefersReduced) return;
     const el = document.createElement("div");
@@ -168,7 +164,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     requestAnimationFrame(tick);
   }
 
-  // ---------- Particles ----------
   function spawnParticles(x, y, theme) {
     if (prefersReduced) return;
     const count = 16;
@@ -205,7 +200,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     }
   }
 
-  // ---------- WhatsApp PRO ----------
   function openWhatsAppFor(btn) {
     const theme = getTheme(btn);
     const { title, price } = getProductInfo(btn);
@@ -240,7 +234,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     });
   }
 
-  // Mobile CTA
   cta.addEventListener("click", () => {
     const orderId = makeOrderId();
     const msg =
@@ -254,7 +247,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });
 
-  // ---------- Tilt ----------
   function initTilt() {
     if (prefersReduced) return;
 
@@ -288,7 +280,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     });
   }
 
-  // ---------- Count-up ----------
   function parseBRL(text) {
     const cleaned = text.replace(/[^\d,\.]/g, "").replace(/\./g, "").replace(",", ".");
     const n = Number(cleaned);
@@ -335,8 +326,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
 
     cards.forEach(c => io.observe(c));
   }
-
-  // ---------- Nav + progress ----------
   function buildNav() {
     const items = themes.map(t => ({ ...t, section: qs(t.sel) })).filter(x => x.section);
     if (!items.length) return;
@@ -395,7 +384,6 @@ const isTouch = matchMedia("(pointer: coarse)").matches;
     onScroll();
   }
 
-  // ---------- Init ----------
   function initAll() {
     injectTrustBar();
     buildNav();

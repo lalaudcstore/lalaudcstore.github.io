@@ -1,19 +1,3 @@
-/* =====================================================
-   LALAUDC STORE — style.css (LIMPO + ORGANIZADO)
-   ✅ Layout restaurado (cards em grade, responsivo)
-   ✅ Fundo padrão mantido
-   ✅ Seções com “destaque” suave (sem bordas retas)
-   ✅ Brilho dos cards por seção:
-      - GEMAS: roxo (opcional, bem leve)
-      - COMIDA: vermelho
-      - ESSÊNCIAS: verde
-      - CURINGAS: dourado
-   ✅ Botões clicáveis (shimmer não bloqueia)
-===================================================== */
-
-/* =====================================================
-   FONTE PERSONALIZADA (DRAGON CITY)
-===================================================== */
 @font-face{
   font-family:"DragonFont";
   src:url("./fonts/curse-casual.ttf") format("truetype");
@@ -21,9 +5,6 @@
   font-style:normal;
 }
 
-/* =====================================================
-   RESET + VARIÁVEIS
-===================================================== */
 *{ margin:0; padding:0; box-sizing:border-box; }
 
 :root{
@@ -36,7 +17,6 @@
   --text-light:#ffffff;
   --text-muted:#cccccc;
 
-  /* cores dos destaques das seções (glow) */
   --glow-gemas: rgba(42,35,112,.55);
   --glow-comida: rgba(255,90,90,.45);
   --glow-essencias: rgba(26,255,156,.40);
@@ -49,9 +29,6 @@
   --shimmer-curingas: rgba(255,205,90,.30);
 }
 
-/* =====================================================
-   BODY + LINKS
-===================================================== */
 html, body{ overflow-x:hidden; }
 
 body{
@@ -63,9 +40,6 @@ body{
 
 a{ text-decoration:none; color:inherit; }
 
-/* =====================================================
-   HERO / HEADER
-===================================================== */
 header.hero{
   min-height:100vh;
   background:
@@ -96,7 +70,6 @@ header p{
   margin-bottom:30px;
 }
 
-/* BOTÃO WHATSAPP */
 .btn-whatsapp{
   background:var(--primary);
   color:#000;
@@ -107,10 +80,6 @@ header p{
 }
 .btn-whatsapp:hover{ background:#fff; transform:scale(1.05); }
 
-/* =====================================================
-   SEÇÕES (FULL-WIDTH) + CONTEÚDO CENTRALIZADO
-   (isso evita “borda reta” do fundo da seção)
-===================================================== */
 section{
   width:100%;
   max-width:none;
@@ -123,7 +92,6 @@ section{
 }
 section.show{ opacity:1; transform:translateY(0); }
 
-/* centraliza conteúdo interno */
 section > *{
   max-width:1100px;
   margin-left:auto;
@@ -139,9 +107,6 @@ section h2{
 
 section p{ color:var(--text-muted); }
 
-/* =====================================================
-   BENEFÍCIOS
-===================================================== */
 .beneficios ul{ list-style:none; margin-top:25px; }
 .beneficios li{
   background:var(--bg-card);
@@ -150,10 +115,6 @@ section p{ color:var(--text-muted); }
   padding:18px;
   border-radius:14px;
 }
-
-/* =====================================================
-   CARDS
-===================================================== */
 .cards{
   display:flex;
   gap:25px;
@@ -189,7 +150,6 @@ section p{ color:var(--text-muted); }
 }
 .card p{ color:var(--text-muted); margin-bottom:20px; }
 
-/* BOTÃO CARD */
 .card a{
   background:var(--primary);
   color:#000;
@@ -204,13 +164,12 @@ section p{ color:var(--text-muted); }
 }
 .card a:hover{ background:#fff; }
 
-/* HOVER */
+
 .card:hover{
   transform:translateY(-6px);
   box-shadow:0 18px 35px rgba(0,0,0,.6);
 }
 
-/* SHIMMER (base desligado — cada seção liga com sua cor) */
 .card::after{
   content:none;
   position:absolute;
@@ -221,13 +180,12 @@ section p{ color:var(--text-muted); }
 }
 .card:hover::after{ opacity:1; }
 
-/* CARD DESTAQUE */
+
 .card.destaque{
   border:2px solid var(--primary);
   animation:pulse 2s infinite;
 }
 
-/* ÍCONES */
 .icon{
   width:28px;
   vertical-align:middle;
@@ -235,10 +193,6 @@ section p{ color:var(--text-muted); }
   filter:drop-shadow(0 0 6px rgba(0,255,204,.4));
 }
 
-/* =====================================================
-   FUNDOS DAS SEÇÕES — “DESTAQUE” SUAVE (SEM LINHAS)
-   (apenas glow difuso; o fundo do site continua roxo escuro)
-===================================================== */
 .produtos-gemas,
 .produtos-comida,
 .produtos-essencias,
@@ -260,12 +214,10 @@ section p{ color:var(--text-muted); }
   pointer-events:none;
   z-index:0;
 
-  /* glow bem suave, sem borda reta */
   filter: blur(90px);
   opacity:.85;
 }
 
-/* cores do glow */
 .produtos-gemas::before{
   background: radial-gradient(circle,
     var(--glow-gemas) 0%,
@@ -295,7 +247,6 @@ section p{ color:var(--text-muted); }
   );
 }
 
-/* garante conteúdo acima do glow */
 .produtos-gemas > *,
 .produtos-comida > *,
 .produtos-essencias > *,
@@ -304,12 +255,6 @@ section p{ color:var(--text-muted); }
   z-index:2;
 }
 
-/* =====================================================
-   SHIMMER (HOVER) POR SEÇÃO
-   + BORDAS/GLOWS DOS CARDS POR SEÇÃO
-===================================================== */
-
-/* GEMAS (shimmer roxo suave) */
 .produtos-gemas .card::after{
   content:"";
   background: linear-gradient(120deg, transparent, var(--shimmer-gemas), transparent);
@@ -318,7 +263,6 @@ section p{ color:var(--text-muted); }
   border:1px solid rgba(181,140,255,.12);
 }
 
-/* COMIDA (shimmer vermelho + tema vermelho) */
 .produtos-comida .card::after{
   content:"";
   background: linear-gradient(120deg, transparent, var(--shimmer-comida), transparent);
@@ -340,7 +284,6 @@ section p{ color:var(--text-muted); }
   filter:drop-shadow(0 0 8px rgba(255,90,90,.7));
 }
 
-/* ESSÊNCIAS (shimmer verde + mais destaque) */
 .produtos-essencias .card::after{
   content:"";
   background: linear-gradient(120deg, transparent, var(--shimmer-essencias), transparent);
@@ -362,7 +305,6 @@ section p{ color:var(--text-muted); }
 }
 .produtos-essencias .card a:hover{ filter:brightness(1.05); }
 
-/* CURINGAS (dourado suave) */
 .produtos-curingas .card::after{
   content:"";
   background: linear-gradient(120deg, transparent, var(--shimmer-curingas), transparent);
@@ -376,9 +318,6 @@ section p{ color:var(--text-muted); }
   box-shadow:0 0 22px rgba(255,205,90,.18);
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
 footer{
   background:#0a081a;
   padding:35px 20px;
@@ -387,9 +326,6 @@ footer{
   font-size:.9rem;
 }
 
-/* =====================================================
-   LOADER
-===================================================== */
 #loader{
   position:fixed;
   inset:0;
@@ -409,9 +345,6 @@ footer{
   animation:spin 1s linear infinite;
 }
 
-/* =====================================================
-   ANIMAÇÕES
-===================================================== */
 @keyframes spin{ to{ transform:rotate(360deg); } }
 
 @keyframes pulse{
@@ -420,9 +353,6 @@ footer{
   100%{ box-shadow:0 0 0 rgba(0,255,204,.4); }
 }
 
-/* =====================================================
-   RESPONSIVO
-===================================================== */
 @media (max-width:768px){
   header h1{ font-size:2.2rem; }
   .logo{ width:120px; }
@@ -464,7 +394,6 @@ html, body {
   touch-action: manipulation;
 }
 
-/* Garante que o conteúdo fica acima de qualquer glow */
 .produtos-gemas > *,
 .produtos-comida > *,
 .produtos-essencias > *,
@@ -473,11 +402,6 @@ html, body {
   z-index: 2;
 }
 
-/* =====================================================
-   AJUSTE 1 (CLIENTE) — REMOVER BOTÃO FLUTUANTE WHATSAPP NO MOBILE
-   (não altera mais nada do site)
-   Observação: o botão flutuante é criado pelo fx.js como .fx-cta
-===================================================== */
 @media (max-width: 768px){
   .fx-cta{
     display: none !important;
@@ -538,45 +462,33 @@ html, body {
   cursor: pointer;
   width: 100%;
 }
-/* ============================= */
-/* CORES POR TIPO DE PRODUTO     */
-/* ============================= */
 
-/* GEMAS — ROXO */
 .produtos-gemas .btn-comprar {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
   box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
 }
 
-/* COMIDA — VERMELHO */
 .produtos-comida .btn-comprar {
   background: linear-gradient(135deg, #ff5f5f, #e11d48);
   box-shadow: 0 0 18px rgba(255, 95, 95, 0.6);
 }
 
-/* ESSÊNCIAS — VERDE */
 .produtos-essencias .btn-comprar {
   background: linear-gradient(135deg, #22ffb1, #00d084);
   box-shadow: 0 0 18px rgba(34, 255, 177, 0.6);
 }
 
-/* CURINGAS — AMARELO */
 .produtos-curingas .btn-comprar {
   background: linear-gradient(135deg, #ffd84d, #facc15);
   color: #1a1a1a;
   box-shadow: 0 0 18px rgba(255, 216, 77, 0.6);
 }
 
-/* ============================= */
-/* AURA ESPECIAL — MAIS VENDIDO  */
-/* ============================= */
-
 .card.destaque {
   position: relative;
   z-index: 1;
 }
 
-/* Aura animada */
 .card.destaque::before {
   content: "";
   position: absolute;
@@ -588,7 +500,6 @@ html, body {
   animation: auraPulse 3s ease-in-out infinite;
 }
 
-/* Cor da aura por seção */
 .produtos-gemas .card.destaque::before {
   background: radial-gradient(circle, #a855f7, transparent 70%);
 }
@@ -605,7 +516,6 @@ html, body {
   background: radial-gradient(circle, #ffd84d, transparent 70%);
 }
 
-/* Animação suave */
 @keyframes auraPulse {
   0% {
     opacity: 0.5;
@@ -620,10 +530,6 @@ html, body {
     transform: scale(0.98);
   }
 }
-
-/* ============================= */
-/* HOVER MAIS GAMER              */
-/* ============================= */
 
 .card:hover {
   transform: translateY(-6px) scale(1.02);
@@ -686,34 +592,21 @@ html, body {
   overflow-x: hidden;
 }
 
-/* =====================================================
-   FIX — BARRA BRANCA À DIREITA (OVERFLOW)
-   - Usa overflow-x: clip (mais forte que hidden)
-   - Ajusta scrollbar para tema escuro (Chrome/Edge/Firefox)
-   - Garante que pseudo-elementos/glows não criem largura extra
-===================================================== */
 html, body{
   overflow-x: clip;
 }
 
-/* Evita qualquer item forçar largura maior que a tela */
 body{
   max-width: 100%;
 }
 
-/* Scrollbar (Chrome/Edge) */
 ::-webkit-scrollbar{ width: 10px; }
 ::-webkit-scrollbar-track{ background: #0d0b1f; }
 ::-webkit-scrollbar-thumb{ background: #2a245a; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover{ background: #3a2f7a; }
 
-/* Scrollbar (Firefox) */
 *{ scrollbar-color: #2a245a #0d0b1f; scrollbar-width: thin; }
 
-/* =====================================================
-   FIX — SETA (garante que some ao rolar)
-   (override final para evitar conflitos com regras duplicadas)
-===================================================== */
 .scroll-indicator{
   position: fixed !important;
   left: 50% !important;
@@ -729,10 +622,6 @@ body.scrolled .scroll-indicator,
   transform: translateX(-50%) translateY(10px) !important;
   transition: opacity .35s ease, transform .35s ease !important;
 }
-/* =========================
-   MOBILE SMOOTH PACK
-   (mais liso, menos travadinhas)
-========================= */
 
 /* 1) Scroll suave e sem “puxadas” */
 html {
@@ -786,9 +675,6 @@ a, button, .btn-comprar {
 .fx-hud {
   will-change: transform, opacity;
 }
-/* ===============================
-   FAQ GAMER
-================================ */
 
 .faq-section {
   max-width: 900px;
